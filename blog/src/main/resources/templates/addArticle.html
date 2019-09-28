@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org"/>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/publish}" th:object="${article}" method="post">
+    标题<input type="text" name="title"/><br/>
+    内容<input type="text" name="content"/> <br/>
+    标签<input type="text" name="tag"/><br/>
+    <input type="submit" value="提交"/>
+</form>
+</body>
+</html>

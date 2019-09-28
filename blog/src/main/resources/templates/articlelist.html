@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org"/>
+　
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <title>Title</title>
+</head>
+<body>
+文章列表
+<table border="1">
+    <tr th:if="${article.size() eq 0} ">
+        <td colspan="7">无数据</td>
+    </tr>
+<tr th:each="art,artStat:${article}">
+    <td th:text="${art.id}"></td>
+    <td th:text="${art.title}"></td>
+<!--    <td th:text="${art.content}"></td>-->
+    <td th:text="${art.tag}"></td>
+    <td><a th:href="@{'getArticle/'+${art.id}}">查看详细内容</a></td>
+<!--    <th th:text="${art.comment}"></th>-->
+    <th><button th:onclick="'javascript:del('+${art.id}+');'" id="delbtn">删除</button> </th>
+    <th><a th:href="@{'editArticle/'+${art.id}}">更新</a></th>
+</tr>
+</table>
+
+<script >
+    function del(aid) {
+        $.ajax({
+            type:'POST', 
+            url:'delArticle/'+aid,
+            success:function (result) {
+                window.location.reload();
+            }
+        })
+    }
+
+</script>
+</body>
+</html>
