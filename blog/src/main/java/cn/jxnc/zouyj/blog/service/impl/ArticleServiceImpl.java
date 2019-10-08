@@ -1,6 +1,7 @@
 package cn.jxnc.zouyj.blog.service.impl;
 
 import cn.jxnc.zouyj.blog.entity.Article;
+import cn.jxnc.zouyj.blog.entity.bo.ArticleBo;
 import cn.jxnc.zouyj.blog.mapper.ArticleMapper;
 import cn.jxnc.zouyj.blog.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,9 @@ public class ArticleServiceImpl implements ArticleService {
     ArticleMapper articleMapper;
 
     @Override
-    public List<Article> getAllArticle() {
-        return articleMapper.selectList(null);
+    public List<ArticleBo> getAllArticle() {
+        List<ArticleBo> articles=articleMapper.selectArticles();
+        return articles;
     }
 
     @Override

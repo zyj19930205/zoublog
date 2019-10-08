@@ -22,7 +22,5 @@ public class Article {
 
     private String content;
 
-    private String tag;
-
     private String comment;
 }

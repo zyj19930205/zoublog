@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.jxnc.zouyj.blog.mapper.ArticleMapper">
+
+    <resultMap id="articleMap" type="cn.jxnc.zouyj.blog.entity.bo.ArticleBo">
+        <id column="articleId" property="id"/>
+        <result column="title" property="title"/>
+        <result column="content" property="content"/>
+        <result column="comment" property="comment"/>
+        <collection property="tags" ofType="cn.jxnc.zouyj.blog.entity.Tag" javaType="list">
+            <id property="id" column="tid"/>
+            <result property="tagName" column="tagname"/>
+        </collection>
+    </resultMap>
+
+
+    <select id="selectArticles" resultMap="articleMap">
+ select z.id as articleId,z.title,z.content,z.comment,a.id as tid,a.tagname from z_article z inner join (select act.aid,t.id,t.tagname from z_actmapptags act inner join z_tag t on act.tid=t.id ) as a on z.id=a.aid
+--         select z.id as articleId,z.title,z.content,z.comment,a.tagname from z_article z inner join (select act.aid,t.tagname from z_actmapptags act inner join z_tag t on act.tid=t.id) as a on z.id=a.aid
+    </select>
+
+    <select id="selectArticlesByTagId" resultMap="articleMap">
+        select * from z_article where id in (select act.aid from z_actmapptags act where act.tid=#{id})
+    </select>
+</mapper>

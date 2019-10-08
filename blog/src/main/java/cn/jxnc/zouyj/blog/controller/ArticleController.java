@@ -1,6 +1,8 @@
 package cn.jxnc.zouyj.blog.controller;
 
 import cn.jxnc.zouyj.blog.entity.Article;
+import cn.jxnc.zouyj.blog.entity.bo.ArticleBo;
+import cn.jxnc.zouyj.blog.mapper.ArticleMapper;
 import cn.jxnc.zouyj.blog.service.ArticleService;
 import cn.jxnc.zouyj.blog.util.EntityResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,8 @@ public class ArticleController {
 
     @Autowired
     ArticleService articleService;
+    @Autowired
+    ArticleMapper articleMapper;
 
     /**
      * 获取所有文章
@@ -33,7 +37,7 @@ public class ArticleController {
      */
     @RequestMapping("/getArticle")
     public String getArticle(Model model){
-        List<Article> articles=articleService.getAllArticle();
+        List<ArticleBo> articles=articleService.getAllArticle();
         model.addAttribute("article",articles);
         return "articlelist";
     }
@@ -68,7 +72,7 @@ public class ArticleController {
     @RequestMapping("/delArticle/{id}")
     public String delArticle(@PathVariable Integer id){
         Integer result=articleService.delArticleById(id);
-        return "articlelist";
+        return "redirect:/getArticle";
     }
 
     /**
@@ -80,6 +84,7 @@ public class ArticleController {
     @RequestMapping("/editArticle/{id}")
     public String editArticle(@PathVariable Integer id,Model model){
         Article article=articleService.getArticleById(id);
+        System.out.println(article);
         model.addAttribute("article",article);
         return "editArticle";
     }
@@ -91,8 +96,17 @@ public class ArticleController {
      */
     @PostMapping("/updateArticle")
     public String updateArticle(Article article){
-        System.out.println(article);
         articleService.updateArticle(article);
         return "showArticle";
+    }
+
+
+    /**
+     * 根据tag查询文章
+     */
+    @RequestMapping("/getArticleByTag/{id}")
+    public String getArticleByTag(@PathVariable int id){
+        List<ArticleBo> articles=articleMapper.selectArticlesByTagId(id);
+        return "taglist";
     }
 }

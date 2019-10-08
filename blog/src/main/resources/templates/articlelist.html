@@ -5,38 +5,67 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<!--    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>-->
     <title>Title</title>
 </head>
-<body>
-文章列表
-<table border="1">
-    <tr th:if="${article.size() eq 0} ">
-        <td colspan="7">无数据</td>
-    </tr>
-<tr th:each="art,artStat:${article}">
-    <td th:text="${art.id}"></td>
-    <td th:text="${art.title}"></td>
-<!--    <td th:text="${art.content}"></td>-->
-    <td th:text="${art.tag}"></td>
-    <td><a th:href="@{'getArticle/'+${art.id}}">查看详细内容</a></td>
-<!--    <th th:text="${art.comment}"></th>-->
-    <th><button th:onclick="'javascript:del('+${art.id}+');'" id="delbtn">删除</button> </th>
-    <th><a th:href="@{'editArticle/'+${art.id}}">更新</a></th>
-</tr>
-</table>
-
-<script >
-    function del(aid) {
-        $.ajax({
-            type:'POST', 
-            url:'delArticle/'+aid,
-            success:function (result) {
-                window.location.reload();
-            }
-        })
+<style>
+    .articleList{
+       margin-bottom: 0;
+        margin-top: 45px;
+        padding: 10px;
     }
+    .btn{
+        padding: 0px 10px !important;
+    }
+</style>
 
+<body>
+<header th:replace="theme/header :: header"></header>
+
+<div id="article_list" class="articleList">文章列表
+    <button id="test1">layer</button>
+    <table class="table table-bordered table-hover">
+<!--        <tr th:if="${article.size()==0} ">-->
+<!--            <td colspan="7">无数据</td>-->
+<!--        </tr>-->
+        <tr th:each="art,artStat:${article}">
+            <td th:text="${art.id}"></td>
+            <td th:text="${art.title}"></td>
+<!--            <td>-->
+<!--                <span th:each="tag,tagStat:${art['tags']}" th:text="${tag.tagName}+','">-->
+<!--                </span>-->
+<!--            </td>-->
+            <td>
+                <span th:each="tag,tagStat:${art['tags']}">
+               <a th:href="@{'getArticleByTag/'+${tag.id}}">[[${tag.tagName}]]</a>
+                    <span  th:if="${tagStat.index < #lists.size(art['tags'])-1}">,</span>
+                </span>
+            </td>
+            <td><a th:href="@{'getArticle/'+${art.id}}">查看详细内容</a></td>
+
+            <!--    <th th:text="${art.comment}"></th>-->
+<!--            <th><a th:href="@{'delArticle/'+${art.id}}"  id="delbtn" class="btn btn-danger">删除</a> </th>-->
+            <th><a href="javascript:void(0);"  id="delbtn" class="btn btn-danger">删除</a> </th>
+            <th><a th:href="@{'editArticle/'+${art.id}}">更新</a></th>
+        </tr>
+    </table></div>
+<script type="text/javascript" th:src="@{/layer/layer.js}"></script>
+<script type="text/javascript">
+    $('#delbtn').on('click', function(){
+        layer.confirm('确定要删除吗？', {
+            btn: ['确定','算了'] //按钮
+        }, function(){
+            layer.msg('好吧', {icon: 1});
+            delArticle();
+        }, function(){
+            layer.msg('明智之举');
+        });
+    });
+
+    function delArticle(id){
+        alert()
+    }
 </script>
+
 </body>
 </html>

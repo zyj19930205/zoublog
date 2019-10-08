@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("cn.jxnc.zouyj.blog.mapper")
+@MapperScan(value = "cn.jxnc.zouyj.blog.mapper")
 public class BlogApplication {
 
     public static void main(String[] args) {
