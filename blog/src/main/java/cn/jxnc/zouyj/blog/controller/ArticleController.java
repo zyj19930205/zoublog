@@ -1,9 +1,11 @@
 package cn.jxnc.zouyj.blog.controller;
 
 import cn.jxnc.zouyj.blog.entity.Article;
+import cn.jxnc.zouyj.blog.entity.Author;
 import cn.jxnc.zouyj.blog.entity.bo.ArticleBo;
 import cn.jxnc.zouyj.blog.mapper.ArticleMapper;
 import cn.jxnc.zouyj.blog.service.ArticleService;
+import cn.jxnc.zouyj.blog.service.AuthorService;
 import cn.jxnc.zouyj.blog.util.EntityResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
@@ -29,6 +31,8 @@ public class ArticleController {
     ArticleService articleService;
     @Autowired
     ArticleMapper articleMapper;
+    @Autowired
+    AuthorService authorService;
 
     /**
      * 获取所有文章
@@ -38,7 +42,9 @@ public class ArticleController {
     @RequestMapping("/getArticle")
     public String getArticle(Model model){
         List<ArticleBo> articles=articleService.getAllArticle();
+
         model.addAttribute("article",articles);
+
         return "articlelist";
     }
 
@@ -105,8 +111,9 @@ public class ArticleController {
      * 根据tag查询文章
      */
     @RequestMapping("/getArticleByTag/{id}")
-    public String getArticleByTag(@PathVariable int id){
+    public String getArticleByTag(@PathVariable int id,Model model){
         List<ArticleBo> articles=articleMapper.selectArticlesByTagId(id);
+        model.addAttribute("article",articles);
         return "taglist";
     }
 }

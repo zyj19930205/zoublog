@@ -16,15 +16,43 @@
     padding: 10px;
     text-align: center;
 }
-    .welcome a{
-
-    }
 </style>
 <body>
 <header th:replace="theme/header :: header"></header>
+<div class="container">
+<div class="row">
+    <div class="col-md-8" id="articleList">
+        <div id="list_container">
+            <!--文章列表模块-->
+            <ul class="noteList">
+                <li th:each="art,artStat:${articles}">
+                    <p th:text="${art.title}" id="title"></p>
+                    <span th:text="${art.content}" id="content"></span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-md-3 col-md-offset-1 aside" id="rightTools">
+        <div class="authorList">
+            <div class="title">
+                <span>作者列表</span>
+            </div>
+            <div class="authorList">
+                <ul class="list">
+                    <li th:each="aut,autStat:${author}">
+                        <span th:text="${aut.authorName}" id="authorName"/>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
 <div class="welcome"><h1><a href="/getArticle">开始使用！</a></h1></div>
 
 </body>
 
-
+<link th:href="@{/zyj/css/indexStyle.css}" rel="stylesheet" type="text/css" />
 </html>

@@ -17,7 +17,7 @@
 
 
     <select id="selectArticles" resultMap="articleMap">
- select z.id as articleId,z.title,z.content,z.comment,a.id as tid,a.tagname from z_article z inner join (select act.aid,t.id,t.tagname from z_actmapptags act inner join z_tag t on act.tid=t.id ) as a on z.id=a.aid
+ select z.id as articleId,z.title,z.content,z.comment,a.id as tid,a.tagname from z_article z left join (select act.aid,t.id,t.tagname from z_actmapptags act inner join z_tag t on act.tid=t.id ) as a on z.id=a.aid
 --         select z.id as articleId,z.title,z.content,z.comment,a.tagname from z_article z inner join (select act.aid,t.tagname from z_actmapptags act inner join z_tag t on act.tid=t.id) as a on z.id=a.aid
     </select>
 

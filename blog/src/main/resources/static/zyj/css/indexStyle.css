@@ -1,0 +1,71 @@
+#article_list{
+    padding-top: 30px;
+}
+body{
+    margin-top:90px;
+    box-sizing: border-box;
+}
+.noteList li{
+    margin: 0 0 15px;
+    border-bottom: 1px solid #f0f0f0;
+    padding: 15px 2px 20px 0;
+}
+.navbar .navbar-collapse .nav{
+    margin-left:80px !important;
+}
+.navbar-header a{
+    color: #761c19 !important;
+}
+.authorList ul li{
+    margin-top: 15px;
+    line-height: 10px;
+}
+.aside{
+    padding:30px 0 0;
+}
+.topBar{
+    min-width: 768px;
+    max-width:1440px;
+    margin:0 65px;
+    height: 56px;
+}
+.logo{
+   display: block;
+    height: 56px;
+    width: 90px;
+    padding: 10px;
+    font-size: 25px;
+    color: #c12e2a;
+    float: left;
+}
+.writeArticleBtn,.sign-in,.log-in{
+    float: right;
+    font-weight: 100;
+}
+.writeArticleBtn{
+    display: block;
+    height: 40px;
+    width: 100px;
+    padding: 6px 12px;
+    font-size: 15px;
+    color: #ffffff;
+    background-color: #c12e2a;
+    line-height: 27px;
+    /*border-radius: 15px;*/
+    margin-top:7px;
+
+}
+.iconWrite{
+    margin-right: 5px;
+}
+.sign-in,.log-in{
+    height: 35px;
+    width: 75px;
+    padding: 7px 10px;
+    font-size: 15px;
+    border: 1px solid #c12e2a;
+    margin-top: 10px;
+    border-radius: 20px;
+    margin-right: 20px;
+    color: #c12e2a;
+}
