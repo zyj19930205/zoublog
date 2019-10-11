@@ -25,15 +25,55 @@
         <div id="list_container">
             <!--文章列表模块-->
             <ul class="noteList">
-                <li th:each="art,artStat:${articles}">
-                    <p th:text="${art.title}" id="title"></p>
-                    <span th:text="${art.content}" id="content"></span>
+                <li th:each="art,artStat:${articles['records']}">
+                    <p th:text="${art.title}" id="title" class="articleTitle"></p>
+                    <span th:text="${art.summary}" id="summary" class="articleSummary"></span>
+                    <div class="meta">
+                        <span class="glyphicon glyphicon-thumbs-up">
+                            <i class="dznum">11</i>
+                        </span>
+                        <span class="glyphicon glyphicon-comment">
+                            <i class="commentNum">5</i>
+                        </span>
+                        <span class="author-name">邹宇杰</span>
+                    </div>
                 </li>
             </ul>
+            <!--页码-->
+            <div class="article-page">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        <li>
+                            <a href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li th:each="pageNo : ${#numbers.sequence(0, articles.pages-1)}">
+                            <!--            <li th:each="art,artStat:${articles['records']}">-->
+                            <a  th:text="${pageNo+1}" th:href="@{'index?pageNo='+${pageNo+1}}"></a>
+                        </li>
+                        <li>
+                            <a href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+            </div>
         </div>
     </div>
 
-    <div class="col-md-3 col-md-offset-1 aside" id="rightTools">
+    <div class="col-md-3 col-md-offset-0 aside" id="rightTools">
+        <div class="tagList">
+            <span class="tagTitle">标签列表</span>
+            <ul class="tag-list">
+                <li class="tag btn" th:each="tag,tagStat:${tags}">
+                    [[${tag.tagName}]]
+                </li>
+            </ul>
+        </div>
+        <!--作者列表模块-->
         <div class="authorList">
             <div class="title">
                 <span>作者列表</span>
@@ -50,9 +90,11 @@
 </div>
 
 </div>
+
+
 <div class="welcome"><h1><a href="/getArticle">开始使用！</a></h1></div>
 
 </body>
 
-<link th:href="@{/zyj/css/indexStyle.css}" rel="stylesheet" type="text/css" />
+
 </html>

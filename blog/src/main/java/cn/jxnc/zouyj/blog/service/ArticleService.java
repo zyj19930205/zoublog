@@ -2,6 +2,10 @@ package cn.jxnc.zouyj.blog.service;
 
 import cn.jxnc.zouyj.blog.entity.Article;
 import cn.jxnc.zouyj.blog.entity.bo.ArticleBo;
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+
 
 import java.util.List;
 

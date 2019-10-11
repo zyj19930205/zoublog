@@ -5,6 +5,8 @@ import cn.jxnc.zouyj.blog.entity.bo.ArticleBo;
 import cn.jxnc.zouyj.blog.mapper.ArticleMapper;
 import cn.jxnc.zouyj.blog.service.ArticleService;
 import cn.jxnc.zouyj.blog.util.EntityResponse;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,9 +27,12 @@ public class ArticleInfoController {
     ArticleMapper articleMapper;
 
     @RequestMapping("/getArticleInfo")
-    public EntityResponse<List<Article>> getArticleInfo(){
-        List<ArticleBo> articles=articleMapper.selectArticles();
-        return new EntityResponse<List<Article>>().success(articles);
+    public IPage<ArticleBo> getArticleInfo(){
+        Page<ArticleBo> page=new Page<ArticleBo>(1,8);
+        //IPage<Article> selectPage=articleMapper.selectPage(page,null);
+        IPage<ArticleBo> articleBoIPage=articleMapper.findByPage(page);
+       // List<ArticleBo> articles=articleMapper.selectArticles();
+        return articleBoIPage;
     }
 
 

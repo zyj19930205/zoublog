@@ -23,4 +23,6 @@ public class Article {
     private String content;
 
     private String comment;
+
+    private String summary;
 }

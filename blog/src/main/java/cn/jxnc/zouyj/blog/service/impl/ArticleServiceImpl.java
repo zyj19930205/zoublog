@@ -4,6 +4,9 @@ import cn.jxnc.zouyj.blog.entity.Article;
 import cn.jxnc.zouyj.blog.entity.bo.ArticleBo;
 import cn.jxnc.zouyj.blog.mapper.ArticleMapper;
 import cn.jxnc.zouyj.blog.service.ArticleService;
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -47,5 +50,7 @@ public class ArticleServiceImpl implements ArticleService {
     public void addArticle(Article article) {
         articleMapper.insert(article);
     }
+
+
 
 }
