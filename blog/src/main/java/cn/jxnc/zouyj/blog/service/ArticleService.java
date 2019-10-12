@@ -19,5 +19,6 @@ public interface ArticleService {
     Integer delArticleById(Integer aid);
     void updateArticle(Article article);
     void addArticle(Article article);
+    List<Article> getArticlesByAuthorId(int id);
 
 }

@@ -10,6 +10,7 @@
         <result column="content" property="content" jdbcType="CLOB"/>
         <result column="comment" property="comment"/>
         <result column="summary" property="summary" jdbcType="CLOB"/>
+        <result column="love" property="dianzan"/>
         <collection property="tags" ofType="cn.jxnc.zouyj.blog.entity.Tag" javaType="list">
             <id property="id" column="tid"/>
             <result property="tagName" column="tagname"/>
@@ -18,7 +19,7 @@
 
 
     <select id="selectArticles" resultMap="articleMap">
- select z.id as articleId,z.title,z.content,z.comment,z.summary,a.id as tid,a.tagname from z_article z left join (select act.aid,t.id,t.tagname from z_actmapptags act inner join z_tag t on act.tid=t.id ) as a on z.id=a.aid
+ select z.id as articleId,z.title,z.content,z.comment,z.summary,z.love,a.id as tid,a.tagname from z_article z left join (select act.aid,t.id,t.tagname from z_actmapptags act inner join z_tag t on act.tid=t.id ) as a on z.id=a.aid
     </select>
 
     <select id="selectArticlesByTagId" resultMap="articleMap">
@@ -26,6 +27,6 @@
     </select>
 
     <select id="findByPage" resultMap="articleMap">
-        select z.id as articleId,z.title,z.content,z.comment,z.summary,a.id as tid,a.tagname from z_article z left join (select act.aid,t.id,t.tagname from z_actmapptags act inner join z_tag t on act.tid=t.id ) as a on z.id=a.aid
+        select z.id as articleId,z.title,z.content,z.comment,z.summary,z.love,a.id as tid,a.tagname from z_article z left join (select act.aid,t.id,t.tagname from z_actmapptags act inner join z_tag t on act.tid=t.id ) as a on z.id=a.aid
     </select>
 </mapper>

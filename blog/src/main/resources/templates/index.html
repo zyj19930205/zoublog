@@ -29,8 +29,8 @@
                     <p th:text="${art.title}" id="title" class="articleTitle"></p>
                     <span th:text="${art.summary}" id="summary" class="articleSummary"></span>
                     <div class="meta">
-                        <span class="glyphicon glyphicon-thumbs-up">
-                            <i class="dznum">11</i>
+                        <span class="glyphicon glyphicon-thumbs-up dz">
+                            <i class="dznum" th:text="${art.dianzan}">11</i>
                         </span>
                         <span class="glyphicon glyphicon-comment">
                             <i class="commentNum">5</i>
@@ -94,7 +94,17 @@
 
 <div class="welcome"><h1><a href="/getArticle">开始使用！</a></h1></div>
 
+
 </body>
+<!--<script th:src="@{/zyj/js/indexJs.js}"/>-->
+<script>
+    $(document).ready(function(){
+        $(".dz").click(function(index){
+          $(this).addClass("dzed");
+        $(this).find('i').html(parseInt($(this).find('i').html())+1)
+        });
 
 
+    });
+</script>
 </html>

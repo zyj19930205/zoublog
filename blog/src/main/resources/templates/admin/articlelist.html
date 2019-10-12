@@ -7,42 +7,38 @@
     <meta charset="UTF-8">
 <!--    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>-->
     <title>Title</title>
+    <link th:href="@{/zyj/css/adminStyle.css}" rel="stylesheet" type="text/css" />
 </head>
 
 
 <body>
 <header th:replace="theme/header :: header"></header>
 
-<div id="article_list" class="articleList">文章列表
+<div class="main">
+<div id="admin_articleList" class="admin_articleList table-responsive">文章列表
     <button id="test1">layer</button>
-    <table class="table table-bordered table-hover">
+    <table class="table table-bordered table-hover text-nowrap">
 <!--        <tr th:if="${article.size()==0} ">-->
 <!--            <td colspan="7">无数据</td>-->
 <!--        </tr>-->
         <tr th:each="art,artStat:${article}">
-            <td th:text="${art.id}"></td>
-            <td th:text="${art.title}"></td>
-<!--            <td>-->
-<!--                <span th:each="tag,tagStat:${art['tags']}" th:text="${tag.tagName}+','">-->
-<!--                </span>-->
-<!--            </td>-->
-            <td>
+            <td th:text="${art.id}" id="id"></td>
+            <td th:text="${art.title}" id="title"></td>
+            <td id="tag">
                 <span th:each="tag,tagStat:${art['tags']}">
                <a th:href="@{'getArticleByTag/'+${tag.id}}">[[${tag.tagName}]]</a>
                     <span  th:if="${tagStat.index < #lists.size(art['tags'])-1}">,</span>
                 </span>
             </td>
-            <td><a th:href="@{'getArticle/'+${art.id}}">查看详细内容</a></td>
-
-            <!--    <th th:text="${art.comment}"></th>-->
-<!--            <th><a th:href="@{'delArticle/'+${art.id}}"  id="delbtn" class="btn btn-danger">删除</a> </th>-->
-            <th><a href="javascript:void(0);"  id="delbtn" class="btn btn-danger">删除</a> </th>
-            <th><a th:href="@{'editArticle/'+${art.id}}">更新</a></th>
+<!--            <td id="content"><a th:href="@{'getArticle/'+${art.id}}">查看详细内容</a></td>-->
+<!--            <td id="del"><a href="javascript:void(0);"  id="delbtn" class="btn btn-danger">删除</a> </td>-->
+            <td id="updateBtn"><a th:href="@{'editArticle/'+${art.id}}">更新</a>/<a href="">删除</a> </td>
         </tr>
     </table></div>
+</div>
 <script type="text/javascript" th:src="@{/layer/layer.js}"></script>
 <script type="text/javascript">
-    $('#delbtn').on('click', function(){
+    $('#test1').on('click', function(){
         layer.confirm('确定要删除吗？', {
             btn: ['确定','算了'] //按钮
         }, function(){

@@ -10,6 +10,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -33,6 +34,11 @@ public class ArticleInfoController {
         IPage<ArticleBo> articleBoIPage=articleMapper.findByPage(page);
        // List<ArticleBo> articles=articleMapper.selectArticles();
         return articleBoIPage;
+    }
+
+    @RequestMapping("/gba/{aid}")
+    public List<Article> getArticlesByAuthorId(@PathVariable("aid") Integer aid){
+        return articleService.getArticlesByAuthorId(aid);
     }
 
 

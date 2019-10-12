@@ -1,0 +1,17 @@
+.admin_articleList tr td{
+    text-align: center;
+}
+.admin_articleList{
+    position: relative;
+    left: 200px;
+    width:1576px;
+    min-height: 763px;
+    height: auto;
+}
+
+#title,#id,#content,#tag{
+    padding-top: 18px;
+}
+.main{
+    margin-top: -10px;
+}

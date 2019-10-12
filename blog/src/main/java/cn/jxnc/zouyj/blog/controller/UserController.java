@@ -11,24 +11,25 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-@RequestMapping("admin")
+@RequestMapping("/admin")
 public class UserController {
 
     @Autowired
     UserService userService;
 
-    @RequestMapping("/loginpage")
+
+
+    @RequestMapping(value = {""})
     public String loginPage(){
         return "admin/login";
     }
 
-    @PostMapping(value = "login")
-    @ResponseBody
+    @PostMapping(value = "/login")
     public String login(@RequestParam String username, @RequestParam String password, HttpServletRequest request){
         User user=userService.login(username,password);
         if(user!=null){
             request.getSession().setAttribute(WebConstant.LOGIN_SESSION_KEY,user);
-            return "success!";
+            return "redirect:/getArticle";
         }
         return "error!";
     }

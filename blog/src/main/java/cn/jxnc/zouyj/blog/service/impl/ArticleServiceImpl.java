@@ -5,6 +5,7 @@ import cn.jxnc.zouyj.blog.entity.bo.ArticleBo;
 import cn.jxnc.zouyj.blog.mapper.ArticleMapper;
 import cn.jxnc.zouyj.blog.service.ArticleService;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,12 @@ public class ArticleServiceImpl implements ArticleService {
         articleMapper.insert(article);
     }
 
+    @Override
+    public List<Article> getArticlesByAuthorId(int id) {
+        QueryWrapper<Article> queryWrapper=new QueryWrapper<Article>();
+        queryWrapper.eq("authorId",id);
+        return articleMapper.selectList(queryWrapper);
+    }
 
 
 }

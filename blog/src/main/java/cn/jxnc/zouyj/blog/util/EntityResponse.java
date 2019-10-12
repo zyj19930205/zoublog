@@ -3,7 +3,8 @@ package cn.jxnc.zouyj.blog.util;
 import lombok.Data;
 
 /**
- * 给返回的数据添加一些参数
+ * 对返回的数据进行封装
+ * 添加状态码
  * @author zouyujie
  * @date 2019/9/28 10:50
  */

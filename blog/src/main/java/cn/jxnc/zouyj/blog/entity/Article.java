@@ -25,4 +25,13 @@ public class Article {
     private String comment;
 
     private String summary;
+
+    @TableField("authorId")
+    private Integer authorId;
+
+    /**
+     * 点赞次数
+     */
+    @TableField("love")
+    private Integer dianzan;
 }

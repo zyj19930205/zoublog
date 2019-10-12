@@ -1,24 +1,16 @@
 package cn.jxnc.zouyj.blog.controller;
 
 import cn.jxnc.zouyj.blog.entity.Article;
-import cn.jxnc.zouyj.blog.entity.Author;
 import cn.jxnc.zouyj.blog.entity.bo.ArticleBo;
 import cn.jxnc.zouyj.blog.mapper.ArticleMapper;
 import cn.jxnc.zouyj.blog.service.ArticleService;
 import cn.jxnc.zouyj.blog.service.AuthorService;
-import cn.jxnc.zouyj.blog.util.EntityResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.method.support.ModelAndViewContainer;
-import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author zouyujie
@@ -45,7 +37,7 @@ public class ArticleController {
 
         model.addAttribute("article",articles);
 
-        return "articlelist";
+        return "admin/articlelist";
     }
 
     /**
