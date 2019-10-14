@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/admin")
@@ -28,8 +29,10 @@ public class UserController {
     public String login(@RequestParam String username, @RequestParam String password, HttpServletRequest request){
         User user=userService.login(username,password);
         if(user!=null){
-            request.getSession().setAttribute(WebConstant.LOGIN_SESSION_KEY,user);
-            return "redirect:/getArticle";
+            HttpSession session=request.getSession();
+            session.setAttribute("user",user);
+            System.out.println("在登陆环节中"+session.getAttribute("user"));
+            return "forward:/getArticle";
         }
         return "error!";
     }

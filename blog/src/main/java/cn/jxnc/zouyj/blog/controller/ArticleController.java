@@ -1,5 +1,6 @@
 package cn.jxnc.zouyj.blog.controller;
 
+import cn.jxnc.zouyj.blog.constant.WebConstant;
 import cn.jxnc.zouyj.blog.entity.Article;
 import cn.jxnc.zouyj.blog.entity.bo.ArticleBo;
 import cn.jxnc.zouyj.blog.mapper.ArticleMapper;
@@ -9,7 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -32,11 +36,15 @@ public class ArticleController {
      * @return
      */
     @RequestMapping("/getArticle")
-    public String getArticle(Model model){
+    public String getArticle(Model model, HttpServletRequest request){
+        HttpSession session=request.getSession();
+        if(session.getAttribute("user")==null){
+            System.out.println("在getarticle中"+session.getAttribute("user"));
+            request.setAttribute("error","权限不够，请登录");
+            return "admin/login";
+        }
         List<ArticleBo> articles=articleService.getAllArticle();
-
         model.addAttribute("article",articles);
-
         return "admin/articlelist";
     }
 
@@ -103,7 +111,7 @@ public class ArticleController {
      * 根据tag查询文章
      */
     @RequestMapping("/getArticleByTag/{id}")
-    public String getArticleByTag(@PathVariable int id,Model model){
+    public String getArticleByTag(@PathVariable int id, Model model){
         List<ArticleBo> articles=articleMapper.selectArticlesByTagId(id);
         model.addAttribute("article",articles);
         return "taglist";

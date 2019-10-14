@@ -25,7 +25,7 @@
         <div id="list_container">
             <!--文章列表模块-->
             <ul class="noteList">
-                <li th:each="art,artStat:${articles['records']}">
+                <li th:if="${articles} ne null" th:each="art,artStat:${articles['records']}" >
                     <p th:text="${art.title}" id="title" class="articleTitle"></p>
                     <span th:text="${art.summary}" id="summary" class="articleSummary"></span>
                     <div class="meta">

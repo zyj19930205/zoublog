@@ -3,20 +3,19 @@
 <html xmlns:th="http://www.thymeleaf.org"/>
 　
 <html lang="en">
+<!--<head th:include="admin/header :: head(~{::title},~{::link},~{::script})">-->
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 <!--    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>-->
     <title>Title</title>
-    <link th:href="@{/zyj/css/adminStyle.css}" rel="stylesheet" type="text/css" />
 </head>
 
 
 <body>
-<header th:replace="theme/header :: header"></header>
+<header th:replace="admin/header :: header"></header>
 
 <div class="main">
 <div id="admin_articleList" class="admin_articleList table-responsive">文章列表
-    <button id="test1">layer</button>
     <table class="table table-bordered table-hover text-nowrap">
 <!--        <tr th:if="${article.size()==0} ">-->
 <!--            <td colspan="7">无数据</td>-->
@@ -26,7 +25,7 @@
             <td th:text="${art.title}" id="title"></td>
             <td id="tag">
                 <span th:each="tag,tagStat:${art['tags']}">
-               <a th:href="@{'getArticleByTag/'+${tag.id}}">[[${tag.tagName}]]</a>
+               <a th:href="@{'getArticleByTag/'+${tag.id}}" th:text="${tag.tagName}"></a>
                     <span  th:if="${tagStat.index < #lists.size(art['tags'])-1}">,</span>
                 </span>
             </td>
@@ -36,23 +35,7 @@
         </tr>
     </table></div>
 </div>
-<script type="text/javascript" th:src="@{/layer/layer.js}"></script>
-<script type="text/javascript">
-    $('#test1').on('click', function(){
-        layer.confirm('确定要删除吗？', {
-            btn: ['确定','算了'] //按钮
-        }, function(){
-            layer.msg('好吧', {icon: 1});
-            delArticle();
-        }, function(){
-            layer.msg('明智之举');
-        });
-    });
 
-    function delArticle(id){
-        alert()
-    }
-</script>
-
+</div>
 </body>
 </html>

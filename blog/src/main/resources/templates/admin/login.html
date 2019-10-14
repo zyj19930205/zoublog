@@ -13,7 +13,7 @@
 <div class="sign">
     <div class="main">
         <h4 class="login-title">登录·注册</h4>
-
+        <span th:text="${error}"/>
             <form th:action="@{/admin/login}" method="post">
                 <div class="loginFrom form-group">
                  <input type="text" class="form-control" name="username" placeholder="请输入用户名"><br>

@@ -13,5 +13,16 @@
     padding-top: 18px;
 }
 .main{
-    margin-top: -10px;
+
+    margin-top: 81px;
+    margin-left: 57px;
+    padding: 12px;
 }
+ .left-navbar ul{
+     margin-top: 58px;
+     width: 230px;
+     font-weight: 300;
+ }
+.left-navbar a{
+     text-decoration: none;
+ }
