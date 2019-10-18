@@ -26,7 +26,8 @@
             <!--文章列表模块-->
             <ul class="noteList">
                 <li th:if="${articles} ne null" th:each="art,artStat:${articles['records']}" >
-                    <p th:text="${art.title}" id="title" class="articleTitle"></p>
+<!--                    <p th:text="${art.title}" id="title" class="articleTitle"></p>-->
+                   <p><a th:href="@{'/getArticle/'+${art.id}}" th:text="${art.title}" id="title" class="articleTitle"></a> </p>
                     <span th:text="${art.summary}" id="summary" class="articleSummary"></span>
                     <div class="meta">
                         <span class="glyphicon glyphicon-thumbs-up dz">

@@ -29,6 +29,8 @@ public class Article {
     @TableField("authorId")
     private Integer authorId;
 
+    private Integer hits;
+
     /**
      * 点赞次数
      */

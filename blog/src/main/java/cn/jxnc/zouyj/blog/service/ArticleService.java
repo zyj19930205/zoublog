@@ -20,5 +20,6 @@ public interface ArticleService {
     void updateArticle(Article article);
     void addArticle(Article article);
     List<Article> getArticlesByAuthorId(int id);
+    Integer addArticleHits(int id);
 
 }

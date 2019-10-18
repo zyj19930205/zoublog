@@ -33,6 +33,13 @@ public class IndexController {
     @Autowired
     TagService tagService;
 
+    /**
+     * 分页查询数据
+     * @param model
+     * @param limit
+     * @param pageNo
+     * @return
+     */
     @RequestMapping({"/","","/index"})
     public String index(Model model, @RequestParam(value = "limit",defaultValue = "8") int limit,@RequestParam(value="pageNo",defaultValue = "1")
                         int pageNo){

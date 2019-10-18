@@ -3,9 +3,12 @@ package cn.jxnc.zouyj.blog.controller;
 
 import cn.jxnc.zouyj.blog.constant.WebConstant;
 import cn.jxnc.zouyj.blog.entity.User;
+import cn.jxnc.zouyj.blog.mapper.ArticleMapper;
+import cn.jxnc.zouyj.blog.mapper.TagMapper;
 import cn.jxnc.zouyj.blog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +19,11 @@ import javax.servlet.http.HttpSession;
 public class UserController {
 
     @Autowired
+    ArticleMapper articleMapper;
+    @Autowired
     UserService userService;
+    @Autowired
+    TagMapper tagMapper;
 
 
 
@@ -35,5 +42,14 @@ public class UserController {
             return "forward:/getArticle";
         }
         return "error!";
+    }
+
+    @RequestMapping("/toIndex")
+    public String toIndex(Model model){
+        int article_count=articleMapper.selectCount(null);
+        int tag_count=tagMapper.selectCount(null);
+        model.addAttribute("count",article_count);
+        model.addAttribute("tag_count",tag_count);
+        return "admin/index";
     }
 }

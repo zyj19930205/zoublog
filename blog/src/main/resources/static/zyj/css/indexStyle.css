@@ -106,4 +106,9 @@ body{
 }
 .article-page{text-align: center;}
 .dz:hover{color: #1E9FFF; cursor: pointer;}
-.dzed{color: #4cae4c;}
+.dzed{color: #4cae4c;
+}
+.noteList a{
+    text-decoration: none;
+    color:#000000;
+}

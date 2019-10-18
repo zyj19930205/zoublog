@@ -9,6 +9,8 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +21,7 @@ import java.util.List;
  * @date 2019/9/27 20:27
  */
 @Service
+@CacheConfig(cacheNames = "article")
 @Transactional(rollbackFor = Exception.class)
 public class ArticleServiceImpl implements ArticleService {
     @Autowired
@@ -31,6 +34,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    @Cacheable
     public Article getArticleById(Integer aid) {
        Article article=articleMapper.selectById(aid);
         return article;
@@ -57,6 +61,16 @@ public class ArticleServiceImpl implements ArticleService {
         QueryWrapper<Article> queryWrapper=new QueryWrapper<Article>();
         queryWrapper.eq("authorId",id);
         return articleMapper.selectList(queryWrapper);
+    }
+
+    @Override
+    public Integer addArticleHits(int id) {
+        try{
+            articleMapper.updateArticleHits(id);
+        }catch (Exception e){
+            return 0;
+        }
+        return 1;
     }
 
 
