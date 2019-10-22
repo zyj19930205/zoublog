@@ -6,4 +6,7 @@
     <select id="selectUserByUsernameAndPassowrd" resultType="cn.jxnc.zouyj.blog.entity.User">
         select * from z_user where username=#{username} and password=#{password}
     </select>
+    <select id="selectUserImageById" parameterType="int" resultType="String">
+        select user_img from z_user where id=#{id}
+    </select>
 </mapper>

@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
 public interface UserMapper {
 
      User selectUserByUsernameAndPassowrd(String username, String password);
-
+     String selectUserImageById(int id);
 }

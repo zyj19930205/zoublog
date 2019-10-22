@@ -32,4 +32,6 @@ public interface ArticleMapper extends BaseMapper<Article> {
     Integer updateArticleHits(int id);
 
     void insertToAct(int aid,int tid);
+
+
 }
